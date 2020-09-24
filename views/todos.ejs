@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+            font-size: 24px;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            /* border: 3px solid green; */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 5rem;
+        }
+
+        .container h1, input, button {
+            margin-bottom: 1rem;
+        }
+
+        .container input {
+            padding: 0.2rem 1rem;
+        }
+
+        .container button {
+            padding: 0.3rem 2rem;
+            background: green;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background: darkgreen;
+        }
+
+        ul li {
+            list-style: none;
+            margin-bottom: 0.2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Todos</h1>
+        <!-- adds todos -->
+        <label for="newTodo">Add Todo</label>
+        <input id="newTodo" type="text">
+        <button id="addTodo">GO!</button>
+
+        <ul id="todos">
+            <% for(const result of results) { %>
+                <li><%= result.todo_name %></li>
+            <% } %>
+        </ul>
+    </div>
+<script>
+
+    // Write our AJAX request 
+    const input = document.querySelector('#newTodo');
+    const button = document.querySelector('#addTodo');
+
+    button.addEventListener('click', () => {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open('POST', `http://localhost:3000/${input.value}`, true);
+
+        xhr.send();
+    })
+
+
+    // our list of todos
+    // const todos = ['vacuum', 'pickup', 'mop'];
+    // getting out element to add our todo list to
+    // const todoElement = document.querySelector('#todos');
+
+    // let todoItems = ''; // html we want to put into the todoElement
+    // // this is the loop to build todoItems
+    // for(let i = 0; i < todos.length; i++) {
+    //     todoItems += "<li>" + todos[i] + "</li>";
+    // }
+    // push the todoItems into todoElement
+    // todoElement.innerHTML = todoItems;
+
+    // add an event listener to our go button 
+    // document.querySelector('#addTodo').addEventListener('click', () => {
+    //     let input = document.querySelector('#newTodo').value;
+
+    //     if(input === '' || input === 'undefined') {
+    //         alert('You must input a value into the Add Todo box!');
+    //     } else {
+    //         // logic to add it to the todo list
+    //         todoElement.innerHTML += `<li>${input}</li>`;
+    //         document.querySelector('#newTodo').value = "";
+    //     }
+    // })
+</script>
+</body>
+</html>
